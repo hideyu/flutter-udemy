@@ -11,67 +11,34 @@ class XylophoneApp extends StatelessWidget {
     player.play('note$soundNumber.wav');
   }
 
+  Expanded buildKey({Color color, int soundNumber}) {
+    return Expanded(
+      child: FlatButton(
+        color: color,
+        onPressed: () {
+          playSound(soundNumber);
+        },
+        child: Text("click me"),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              FlatButton(
-                color: Colors.red,
-                onPressed: () {
-                  playSound(1);
-                },
-                child: Text("Click me"),
-              ),
-              FlatButton(
-                color: Colors.orange,
-                onPressed: () {
-                  playSound(2);
-                },
-                child: Text("Click me"),
-              ),
-              FlatButton(
-                color: Colors.yellow,
-                onPressed: () {
-                  // audioplayers
-                  playSound(3);
-                },
-                child: Text("Click me"),
-              ),
-              FlatButton(
-                color: Colors.lightGreen,
-                onPressed: () {
-                  // audioplayers
-                  playSound(4);
-                },
-                child: Text("Click me"),
-              ),
-              FlatButton(
-                color: Colors.green,
-                onPressed: () {
-                  // audioplayers
-                  playSound(5);
-                },
-                child: Text("Click me"),
-              ),
-              FlatButton(
-                color: Colors.blue,
-                onPressed: () {
-                  // audioplayers
-                  playSound(6);
-                },
-                child: Text("Click me"),
-              ),
-              FlatButton(
-                color: Colors.purple,
-                onPressed: () {
-                  // audioplayers
-                  playSound(7);
-                },
-                child: Text("Click me"),
-              ),
+              buildKey(color: Colors.red, soundNumber: 1),
+              buildKey(color: Colors.orange, soundNumber: 2),
+              buildKey(color: Colors.yellow, soundNumber: 3),
+              buildKey(color: Colors.green, soundNumber: 4),
+              buildKey(color: Colors.teal, soundNumber: 5),
+              buildKey(color: Colors.blue, soundNumber: 6),
+              buildKey(color: Colors.purple, soundNumber: 7),
             ],
           ),
         ),

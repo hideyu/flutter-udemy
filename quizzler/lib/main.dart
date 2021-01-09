@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quizzler/quiz_brain.dart';
+// import 'question.dart';
+
+QuizBrain quizBrain = QuizBrain();
 
 void main() {
   runApp(Quizzler());
@@ -27,6 +31,34 @@ class QuizePage extends StatefulWidget {
 }
 
 class _QuizePageState extends State<QuizePage> {
+  List<Widget> scoreKeeper = [];
+
+  void checkAnswer(bool userPickedAnswer) {
+    setState(() {
+      bool correctAnswer =
+          // quizBrain.questionBank[questionNumber].questionAnswer;
+          quizBrain.getQuestionAnswer();
+      if (userPickedAnswer == correctAnswer) {
+        print("user got it right");
+        scoreKeeper.add(
+          Icon(
+            Icons.check,
+            color: Colors.green,
+          ),
+        );
+      } else {
+        scoreKeeper.add(
+          Icon(
+            Icons.close,
+            color: Colors.red,
+          ),
+        );
+      }
+
+      quizBrain.nextQuestion(); // 問題を一つ進める
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -39,7 +71,9 @@ class _QuizePageState extends State<QuizePage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                // questions[questionNumber], // question.firstでも同じ
+                // quizBrain.questionBank[questionNumber].questionText,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -64,6 +98,16 @@ class _QuizePageState extends State<QuizePage> {
               ),
               onPressed: () {
                 //The user picked true.
+                checkAnswer(true);
+
+                // setState(() {
+                //   scoreKeeper.add(
+                //     Icon(
+                //       Icons.check,
+                //       color: Colors.green,
+                //     ),
+                //   );
+                // });
               },
             ),
           ),
@@ -82,11 +126,18 @@ class _QuizePageState extends State<QuizePage> {
               ),
               onPressed: () {
                 //The user picked false.
+                checkAnswer(false);
+
+                setState(() {
+                  quizBrain.nextQuestion(); // 問題を一つ進める
+                });
               },
             ),
           ),
         ),
-        //TODO: Add a Row here as your score keeper
+        Row(
+          children: scoreKeeper,
+        ),
       ],
     );
   }

@@ -54,7 +54,6 @@ class _QuizePageState extends State<QuizePage> {
           ),
         );
       }
-
       quizBrain.nextQuestion(); // 問題を一つ進める
     });
   }
@@ -127,10 +126,6 @@ class _QuizePageState extends State<QuizePage> {
               onPressed: () {
                 //The user picked false.
                 checkAnswer(false);
-
-                setState(() {
-                  quizBrain.nextQuestion(); // 問題を一つ進める
-                });
               },
             ),
           ),

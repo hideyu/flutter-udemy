@@ -1,5 +1,9 @@
+import 'package:clima/screens/location_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:clima/services/location.dart';
+// import 'package:clima/services/location.dart';
+// import 'package:clima/services/networking.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:clima/services/weather.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -7,35 +11,42 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+  double latitude;
+  double longitude;
+
   @override
   void initState() {
     super.initState();
-
+    print("initState() is called");
     getLocation();
   }
 
   void getLocation() async {
-    Location location = Location();
-    await location.getCurrentLocation();
-    print(location.latitude);
-    print(location.longitude);
+    var weatherData = await WeatherModel().getLocationWeather();
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return LocationScreen(
+            locationWeather: weatherData,
+          );
+        },
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    String myMargin = 'abc';
-    double myMarginAsDouble;
-
-    try {
-      myMarginAsDouble = double.parse(myMargin);
-    } catch (e) {
-      print(e);
-    }
-
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.all(myMarginAsDouble ?? 30.0),
-        color: Colors.red,
+      appBar: AppBar(
+        title: Text("hogehoge"),
+      ),
+      body: Center(
+        child: SpinKitDoubleBounce(
+          color: Colors.white,
+          size: 100.0,
+        ),
       ),
     );
   }

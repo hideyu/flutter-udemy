@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "574113871980",
+    "project_id": "flash-chat-udemy-19c52",
+    "storage_bucket": "flash-chat-udemy-19c52.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:574113871980:android:198e45dc183f2a3b8c8049",
+        "android_client_info": {
+          "package_name": "co.zukimaru0410.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "574113871980-mafllglmbeb9qre87fnlq3401cu13cjq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaX77ABoD_3i4EN8O4aSt3LMyFxcR2ap0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "574113871980-mafllglmbeb9qre87fnlq3401cu13cjq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
